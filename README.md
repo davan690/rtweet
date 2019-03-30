@@ -167,8 +167,7 @@ Stream all geo enabled tweets from London for 60 seconds.
 rt <- stream_tweets(lookup_coords("london, uk"), timeout = 60)
 ```
 
-Stream all tweets mentioning realDonaldTrump or Trump for a
-week.
+Stream all tweets mentioning realDonaldTrump or Trump for a week.
 
 ``` r
 ## stream london tweets for a week (60 secs x 60 mins * 24 hours *  7 days)

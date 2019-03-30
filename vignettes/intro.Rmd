@@ -1,6 +1,6 @@
 ---
 title: "Intro to rtweet: Collecting Twitter Data"
-author: "Michael W. Kearney"
+author: "Anthony Davidson"
 output:
   rmarkdown::html_vignette
 vignette: >
@@ -9,17 +9,22 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include=FALSE}
-knitr::opts_chunk$set(
-  echo = TRUE, eval = FALSE, comment = "#>", collapse = TRUE)
-```
+# Setting up enviroment
 
 This vignette provides a quick tour of the R package `rtweet: Collecting Twitter Data`.
 
-### Search tweets
+```{r enviroment, include=TRUE}
+knitr::opts_chunk$set(
+  echo = TRUE, eval = FALSE, comment = "#>", collapse = TRUE)
+library(rtweet)
+library(tidyverse)
+```
 
-Search for up to 18,000 (non-retweeted) tweets containing the rstats hashtag.
-```{r, eval=FALSE}
+## Search tweets
+
+Search a simple tweet dataset for up to 18,000 (non-retweeted) tweets containing the rstats hashtag.
+
+```{r, eval=TRUE}
 ## search for 18000 tweets using the rstats hashtag
 rt <- search_tweets(
   "#rstats", n = 18000, include_rts = FALSE
@@ -213,6 +218,7 @@ tweets_data(famous_tweeters)
 
 ```{r, eval=FALSE}
 post_tweet("my first rtweet #rstats")
+
 ```
 
 ### Following users

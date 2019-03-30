@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>intro.Rmd</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+	font-size: 14px;
+	padding: 0 12px;
+	line-height: 22px;
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	color: #4080D0;
+	text-decoration: none;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {
+	font-size: inherit;
+	line-height: auto;
+}
+
+a:hover {
+	color: #4080D0;
+	text-decoration: underline;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left: 5px solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 14px;
+	line-height: 19px;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+.mac code {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+/** Theming */
+
+.vscode-light,
+.vscode-light pre code {
+	color: rgb(30, 30, 30);
+}
+
+.vscode-dark,
+.vscode-dark pre code {
+	color: #DDD;
+}
+
+.vscode-high-contrast,
+.vscode-high-contrast pre code {
+	color: white;
+}
+
+.vscode-light code {
+	color: #A31515;
+}
+
+.vscode-dark code {
+	color: #D7BA7D;
+}
+
+.vscode-light pre:not(.hljs),
+.vscode-light code > div {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre:not(.hljs),
+.vscode-dark code > div {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre:not(.hljs),
+.vscode-high-contrast code > div {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+.vscode-light blockquote,
+.vscode-dark blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.vscode-high-contrast blockquote {
+	background: transparent;
+	border-color: #fff;
+}
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family:  "Meiryo", "Segoe WPC", "Segoe UI", "SFUIText-Light", "HelveticaNeue-Light", sans-serif, "Droid Sans Fallback";
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+</head>
+<body>
+<hr>
+<h2 id="title-intro-to-rtweet-collecting-twitter-dataauthor-michael-w-kearneyoutputrmarkdownhtmlvignettevignette-vignetteindexentryintro-to-rtweetvignetteengineknitrrmarkdownvignetteencodingutf-8">title: &quot;Intro to rtweet: Collecting Twitter Data&quot;
+author: &quot;Michael W. Kearney&quot;
+output:
+rmarkdown::html_vignette
+vignette: &gt;
+%\VignetteIndexEntry{Intro to rtweet}
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteEncoding{UTF-8}</h2>
+<pre class="hljs"><code><div>knitr::opts_chunk$set(
+  echo = TRUE, eval = FALSE, comment = &quot;#&gt;&quot;, collapse = TRUE)
+</div></code></pre>
+<p>This vignette provides a quick tour of the R package <code>rtweet: Collecting Twitter Data</code>.</p>
+<h3 id="search-tweets">Search tweets</h3>
+<p>Search for up to 18,000 (non-retweeted) tweets containing the rstats hashtag.</p>
+<pre class="hljs"><code><div>## search for 18000 tweets using the rstats hashtag
+rt &lt;- search_tweets(
+  &quot;#rstats&quot;, n = 18000, include_rts = FALSE
+)
+
+## preview tweets data
+rt
+
+## preview users data
+users_data(rt)
+
+## plot time series (if ggplot2 is installed)
+ts_plot(rt)
+</div></code></pre>
+<p>Quickly visualize frequency of tweets over time using <code>ts_plot()</code>.</p>
+<pre class="hljs"><code><div>## plot time series of tweets
+ts_plot(rt, &quot;3 hours&quot;) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(plot.title = ggplot2::element_text(face = &quot;bold&quot;)) +
+  ggplot2::labs(
+    x = NULL, y = NULL,
+    title = &quot;Frequency of #rstats Twitter statuses from past 9 days&quot;,
+    subtitle = &quot;Twitter status (tweet) counts aggregated using three-hour intervals&quot;,
+    caption = &quot;\nSource: Data collected from Twitter's REST API via rtweet&quot;
+  )
+</div></code></pre>
+<p>Twitter rate limits cap the number of search results returned to
+18,000 every 15 minutes. To request more than that, simply set
+<code>retryonratelimit = TRUE</code> and rtweet will wait for rate limit
+resets for you.</p>
+<pre class="hljs"><code><div>## search for 250,000 tweets containing the word data
+rt &lt;- search_tweets(
+  &quot;data&quot;, n = 250000, retryonratelimit = TRUE
+)
+</div></code></pre>
+<p>Search by geo-location---for example, find 10,000 tweets in the English
+language sent from the United States.</p>
+<pre class="hljs"><code><div>## search for 10,000 tweets sent from the US
+rt &lt;- search_tweets(
+  &quot;lang:en&quot;, geocode = lookup_coords(&quot;usa&quot;), n = 10000
+)
+
+## create lat/lng variables using all available tweet and profile geo-location data
+rt &lt;- lat_lng(rt)
+
+## plot state boundaries
+par(mar = c(0, 0, 0, 0))
+maps::map(&quot;state&quot;, lwd = .25)
+
+## plot lat and lng points onto state map
+with(rt, points(lng, lat, pch = 20, cex = .75, col = rgb(0, .3, .7, .75)))
+</div></code></pre>
+<h3 id="stream-tweets">Stream tweets</h3>
+<p>Randomly sample (approximately 1%) from the live stream of all tweets.</p>
+<pre class="hljs"><code><div>## random sample for 30 seconds (default)
+rt &lt;- stream_tweets(&quot;&quot;)
+</div></code></pre>
+<p>Stream all geo enabled tweets from London for 60 seconds.</p>
+<pre class="hljs"><code><div>## stream tweets from london for 60 seconds
+rt &lt;- stream_tweets(lookup_coords(&quot;london, uk&quot;), timeout = 60)
+</div></code></pre>
+<p>Stream all tweets mentioning realDonaldTrump or Trump for a week.</p>
+<pre class="hljs"><code><div>## stream london tweets for a week (60 secs x 60 mins * 24 hours *  7 days)
+stream_tweets(
+  &quot;realdonaldtrump,trump&quot;,
+  timeout = 60 * 60 * 24 * 7,
+  file_name = &quot;tweetsabouttrump.json&quot;,
+  parse = FALSE
+)
+
+## read in the data as a tidy tbl data frame
+djt &lt;- parse_stream(&quot;tweetsabouttrump.json&quot;)
+</div></code></pre>
+<h3 id="get-friends">Get friends</h3>
+<p>Retrieve a list of all the accounts a <strong>user follows</strong>.</p>
+<pre class="hljs"><code><div>## get user IDs of accounts followed by CNN
+cnn_fds &lt;- get_friends(&quot;cnn&quot;)
+
+## lookup data on those accounts
+cnn_fds_data &lt;- lookup_users(cnn_fds$user_id)
+</div></code></pre>
+<h3 id="get-followers">Get followers</h3>
+<p>Retrieve a list of the <strong>accounts following</strong> a user.</p>
+<pre class="hljs"><code><div>## get user IDs of accounts following CNN
+cnn_flw &lt;- get_followers(&quot;cnn&quot;, n = 75000)
+
+## lookup data on those accounts
+cnn_flw_data &lt;- lookup_users(cnn_flw$user_id)
+</div></code></pre>
+<p>Or if you really want ALL of their followers:</p>
+<pre class="hljs"><code><div>## how many total follows does cnn have?
+cnn &lt;- lookup_users(&quot;cnn&quot;)
+
+## get them all (this would take a little over 5 days)
+cnn_flw &lt;- get_followers(
+  &quot;cnn&quot;, n = cnn$followers_count, retryonratelimit = TRUE
+)
+</div></code></pre>
+<h3 id="get-timelines">Get timelines</h3>
+<p>Get the most recent 3,200 tweets from cnn, BBCWorld, and foxnews.</p>
+<pre class="hljs"><code><div>## get user IDs of accounts followed by CNN
+tmls &lt;- get_timelines(c(&quot;cnn&quot;, &quot;BBCWorld&quot;, &quot;foxnews&quot;), n = 3200)
+
+## plot the frequency of tweets for each user over time
+tmls %&gt;%
+  dplyr::filter(created_at &gt; &quot;2017-10-29&quot;) %&gt;%
+  dplyr::group_by(screen_name) %&gt;%
+  ts_plot(&quot;days&quot;, trim = 1L) +
+  ggplot2::geom_point() +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    legend.title = ggplot2::element_blank(),
+    legend.position = &quot;bottom&quot;,
+    plot.title = ggplot2::element_text(face = &quot;bold&quot;)) +
+  ggplot2::labs(
+    x = NULL, y = NULL,
+    title = &quot;Frequency of Twitter statuses posted by news organization&quot;,
+    subtitle = &quot;Twitter status (tweet) counts aggregated by day from October/November 2017&quot;,
+    caption = &quot;\nSource: Data collected from Twitter's REST API via rtweet&quot;
+  )
+</div></code></pre>
+<h3 id="get-favorites">Get favorites</h3>
+<p>Get the 3,000 most recently favorited statuses by JK Rowling.</p>
+<pre class="hljs"><code><div>jkr &lt;- get_favorites(&quot;jk_rowling&quot;, n = 3000)
+</div></code></pre>
+<h3 id="search-users">Search users</h3>
+<p>Search for 1,000 users with the rstats hashtag in their profile bios.</p>
+<pre class="hljs"><code><div>## search for users with #rstats in their profiles
+usrs &lt;- search_users(&quot;#rstats&quot;, n = 1000)
+</div></code></pre>
+<h3 id="get-trends">Get trends</h3>
+<p>Discover what's currently trending in San Francisco.</p>
+<pre class="hljs"><code><div>sf &lt;- get_trends(&quot;san francisco&quot;)
+</div></code></pre>
+<h3 id="lookup-users">Lookup users</h3>
+<pre class="hljs"><code><div>## lookup users by screen_name or user_id
+users &lt;- c(&quot;KimKardashian&quot;, &quot;justinbieber&quot;, &quot;taylorswift13&quot;,
+           &quot;espn&quot;, &quot;JoelEmbiid&quot;, &quot;cstonehoops&quot;, &quot;KUHoops&quot;,
+           &quot;upshotnyt&quot;, &quot;fivethirtyeight&quot;, &quot;hadleywickham&quot;,
+           &quot;cnn&quot;, &quot;foxnews&quot;, &quot;msnbc&quot;, &quot;maddow&quot;, &quot;seanhannity&quot;,
+           &quot;potus&quot;, &quot;epa&quot;, &quot;hillaryclinton&quot;, &quot;realdonaldtrump&quot;,
+           &quot;natesilver538&quot;, &quot;ezraklein&quot;, &quot;annecoulter&quot;)
+famous_tweeters &lt;- lookup_users(users)
+
+## preview users data
+famous_tweeters
+
+# extract most recent tweets data from the famous tweeters
+tweets_data(famous_tweeters)
+</div></code></pre>
+<h3 id="posting-statuses">Posting statuses</h3>
+<pre class="hljs"><code><div>post_tweet(&quot;my first rtweet #rstats&quot;)
+</div></code></pre>
+<h3 id="following-users">Following users</h3>
+<pre class="hljs"><code><div>## ty for the follow ;)
+post_follow(&quot;kearneymw&quot;)
+</div></code></pre>
+
+</body>
+</html>
